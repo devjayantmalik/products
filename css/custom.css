@@ -1,0 +1,17 @@
+.product-create-form {
+    margin-top: 30px;
+    padding: 30px;
+}
+
+.margin-top-30 {
+    margin-top: 30px;
+}
+
+.product-image {
+    width: 400px;
+    height: 300px;
+}
+
+.product-card {
+    width: 23rem;
+}
