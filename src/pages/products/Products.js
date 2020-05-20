@@ -3,13 +3,18 @@ import { connect } from "react-redux";
 import { fetchProducts } from "../../actions";
 import ErrorCard from "../../components/ErrorCard";
 import ProductItem from "../../components/ProductItem";
+import Loader from "../../components/Loader";
+
+let LOADING = true;
 
 const Products = ({ error, products, fetchProducts }) => {
     useEffect(() => {
         fetchProducts();
+        LOADING = false;
     }, []);
 
     if (error && error !== null) return <ErrorCard error={error} />;
+    if (LOADING) return <Loader />;
 
     if (products.length < 1) return <ErrorCard error="No items found." />;
 
