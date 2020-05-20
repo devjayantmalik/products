@@ -1,11 +1,10 @@
 import * as types from "../constants/actionTypes";
-import localhost from "../apis/localhost";
+import api from "../apis";
 
 import history from "../history";
 
 export const fetchProducts = () => (dispatch) => {
-    localhost
-        .get("/products")
+    api.get("/products")
         .then((res) => {
             dispatch({ type: types.FETCH_PRODUCTS, payload: res.data });
         })
@@ -15,8 +14,7 @@ export const fetchProducts = () => (dispatch) => {
 };
 
 export const fetchProduct = (id) => (dispatch) => {
-    localhost
-        .get(`/products/${id}`)
+    api.get(`/products/${id}`)
         .then((res) => {
             dispatch({ type: types.FETCH_PRODUCT, payload: res.data });
         })
@@ -26,8 +24,7 @@ export const fetchProduct = (id) => (dispatch) => {
 };
 
 export const createProduct = (product) => (dispatch) => {
-    localhost
-        .post("/products", product)
+    api.post("/products", product)
         .then((res) => {
             dispatch({ type: types.CREATE_PRODUCT, payload: res.data });
             history.push("/products");
@@ -38,8 +35,7 @@ export const createProduct = (product) => (dispatch) => {
 };
 
 export const updateProduct = (id, product) => (dispatch) => {
-    localhost
-        .patch(`/products/${id}`, product)
+    api.patch(`/products/${id}`, product)
         .then((res) => {
             dispatch({ type: types.UPDATE_PRODUCT, payload: res.data });
             history.push("/products");
@@ -50,8 +46,7 @@ export const updateProduct = (id, product) => (dispatch) => {
 };
 
 export const deleteProduct = (id, product) => (dispatch) => {
-    localhost
-        .delete(`/products/${id}`, product)
+    api.delete(`/products/${id}`, product)
         .then(() => {
             dispatch({ type: types.DELETE_PRODUCT, payload: id });
             history.push("/products");
